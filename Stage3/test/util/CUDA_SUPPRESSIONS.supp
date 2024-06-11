@@ -1,0 +1,12 @@
+{
+   <libcuda>
+   Memcheck:Leak
+   ...
+   obj:/usr/lib/x86_64-linux-gnu/libcuda*
+}
+{
+   <private_fns>
+   Memcheck:Leak
+   ...
+   fun:_dl*
+}
