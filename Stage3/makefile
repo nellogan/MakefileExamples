@@ -33,10 +33,10 @@ SILENT_OPTS = --no-print-directory --silent
 
 CUDA_SOURCES = $(wildcard $(SRC)/*.cu)
 ifeq ($(NVCC_INSTALLED),1)
-    CUDA_CAPABLE_MACRO = -DCUDA_CAPABLE
-    LIB_DIR_FLAGS = -L$(subst bin/,lib64/,$(dir $(shell which nvcc)))
-    LIB_FLAGS = -lcudart
-	CUDA_OBJECTS = $(addprefix $(BUILD)/,$(notdir $(patsubst %.cu,%.o,$(CUDA_SOURCES))))
+	CUDA_CAPABLE_MACRO = -DCUDA_CAPABLE
+	LIB_DIR_FLAGS = -L$(subst bin/,lib64/,$(dir $(shell which nvcc)))
+	LIB_FLAGS = -lcudart
+    CUDA_OBJECTS = $(addprefix $(BUILD)/,$(notdir $(patsubst %.cu,%.o,$(CUDA_SOURCES))))
 endif
 
 SRC = $(addsuffix src,$(CURRENT_DIR))
@@ -74,6 +74,7 @@ $(MAIN_EXECUTABLE): $(OBJECTS) $(CUDA_OBJECTS)
 ifeq ($(NVCC_INSTALLED),1)
 	$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(CUDA_OBJECTS) $(LIB_DIR_FLAGS) $(LIB_FLAGS)
 else
+	@${WARNING_FLASH} "nvcc not found in PATH, MainExecutable will not use CUDA files!" ${END_FLAVOR_TEXT}
 	$(CC) $(CFLAGS) -o $@ $(OBJECTS)
 endif
 
@@ -128,7 +129,6 @@ build: test $(MAIN_EXECUTABLE)
 	@${SUCCESS_FLASH} "$(notdir $(MAIN_EXECUTABLE)) passed all tests and compiled successfully!" ${END_FLAVOR_TEXT}
 
 untested-build: $(MAIN_EXECUTABLE)
-	@${WARNING_FLASH} "nvcc not found in PATH, untested-build will not use CUDA files!" ${END_FLAVOR_TEXT}
 	@${SUCCESS_FLASH} "$(notdir MAIN_EXECUTABLE) compiled successfully!" ${END_FLAVOR_TEXT}
 
 clean:
