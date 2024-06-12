@@ -24,7 +24,7 @@ acceptance of an application or system that in uses multiple: languages, compile
 ### 1.  CLONE:
 Copy and paste below into terminal and press enter:
 
-    git clone https://github.com/nellogan/MakefileExamples.git
+>git clone https://github.com/nellogan/MakefileExamples.git
 
 
 ### 2.  BUILD:
@@ -37,7 +37,7 @@ If 'make fresh-start' is entered, make will remove all generated files and direc
 ### 3. EXPERIMENT:
 Try changing directories to various Stages, issue make or make <target> and observe results.
 
-    cd Stage0
+>cd Stage0 
     make
     ./bin/MainExecutable
     ...output...
@@ -62,11 +62,11 @@ Try commenting/uncommenting lines in source files to force errors to see how aut
     Simple -- File structure: bin, build, include, src, and test (where test mimics parent structure). File structure 
     will not change much in further stages. More liberal use of variables. Introduction of make functions such as 
     wildcard, patterns such as globs(*), patterns(%), and automatic variables such as $<. Test directory contains its 
-    own makefile that is invoked from Stage1 makefile i.e., recursive make. UnitTestRunner bundles all unit tests as a 
+    own makefile that is invoked from Stage1 makefile i.e. recursive make. UnitTestRunner bundles all unit tests as a 
     single executable. Use of a shell conditional if statement under the "test:" target.
-
+    
     Automated testing is introduced. Accomplished by setting the prerequisite of the build target to include the test 
-    target, i.e., build: test $(MAIN_EXECUTABLE). This forces the build target to only be completed after all tests are 
+    target, i.e. build: test $(MAIN_EXECUTABLE). This forces the build target to only be completed after all tests are 
     built and returned successfully. If any of the tests fail, makefile will exit: $(MAIN_EXECUTABLE) will not be 
     compiled. 
 
@@ -85,25 +85,29 @@ Try commenting/uncommenting lines in source files to force errors to see how aut
     compiled and evaluated individually. This is done through a macro and conditional compilation in test source files. 
     Library files are used. Pattern to handle a different file type that requires a different compiler (.cu CUDA files); 
     therefore, another leak/error checker is used (nvidia compute-sanitizer) on these files. Uses conditionals to
-    determine rules, e.g nvcc not on path -> compile main/tests without CUDA files. Since nvcc/compute-sanitizer are 
+    determine rules, e.g., nvcc not on path -> compile main/tests without CUDA files. Since nvcc/compute-sanitizer are 
     optional (CUDA files), $(MAIN_EXECUTABLE) will compile without these functions if not installed.
-
+    
     Extras: Uses ANSI color codes for fancier SUCCESS/WARNING/ERROR messages. Valgrind does not know how to handle 
-    compiled CUDA code, so a supression file is added in test/util.
-
-    Todo: Save output to log file for record keeping.
+    compiled CUDA code, so a suppression file is added in test/util.
+    
+    Todo: Save make output to log file for record keeping.
 
 
 # Demo:
 
 Stage3 with nvcc:
+
 https://github.com/nellogan/git-test/assets/104987293/2ec2fe24-421b-4f87-a004-78ec03704478
 
 Stage3 without nvcc:
+
 https://github.com/nellogan/git-test/assets/104987293/92eb4dc0-1bca-4a82-a097-9b6cddba373e
 
 Stage3 valgrind error:
+
 https://github.com/nellogan/git-test/assets/104987293/3525dc3f-6769-48c8-91c0-d34ab1496119
 
 Stage3 compute-sanitizer error:
+
 https://github.com/nellogan/git-test/assets/104987293/6314586a-2922-4d4a-bcb4-4652704f35a9
