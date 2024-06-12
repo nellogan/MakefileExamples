@@ -29,6 +29,7 @@ Copy and paste below into terminal and press enter:
 
 ### 2.  BUILD:
 To build all stages, copy and paste below into a terminal window:
+
     make
 
 If 'make fresh-start' is entered, make will remove all generated files and directories.
