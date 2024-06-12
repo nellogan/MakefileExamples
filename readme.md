@@ -24,12 +24,12 @@ acceptance of an application or system that in uses multiple: languages, compile
 ### 1.  CLONE:
 Copy and paste below into terminal and press enter:
 
->git clone https://github.com/nellogan/MakefileExamples.git
+    git clone https://github.com/nellogan/MakefileExamples.git
 
 
 ### 2.  BUILD:
 To build all stages, copy and paste below into a terminal window:
->make
+    make
 
 If 'make fresh-start' is entered, make will remove all generated files and directories.
 
@@ -37,7 +37,7 @@ If 'make fresh-start' is entered, make will remove all generated files and direc
 ### 3. EXPERIMENT:
 Try changing directories to various Stages, issue make or make <target> and observe results.
 
->cd Stage0 
+    cd Stage0 
     make
     ./bin/MainExecutable
     ...output...
